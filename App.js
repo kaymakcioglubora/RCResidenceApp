@@ -4,7 +4,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, useNavigationContainerRef } from '@react-navigation/native';
 import * as Font from 'expo-font';
 
 // Screens
@@ -36,6 +36,7 @@ let customFonts = {
 export default function App() {
 
 	const [fontLoaded, setFontLoaded] = React.useState(false);
+	const navigationRef = useNavigationContainerRef();
 
 	React.useEffect(() => {
 		Font.loadAsync(customFonts)
@@ -46,6 +47,7 @@ export default function App() {
 
 	if (!fontLoaded) return null;
 
+	
 
 	return (
 		<NavigationContainer theme={theme}>
@@ -67,10 +69,10 @@ export default function App() {
 						headerRight: () => (
 							<TouchableOpacity
 								style={{ marginRight: SIZES.padding }}
-								onPress={() => console.log("Pressed")}
+								onPress={() => console.log("Settings")}
 							>
 								<Image
-                                    source={icons.menu}
+                                    source={icons.setting}
                                     resizeMode="contain"
                                     style={{
                                         width: 25,
@@ -81,6 +83,15 @@ export default function App() {
 						)
 					}}
 				/>
+
+				<Stack.Screen
+					name="OutOfResidence"
+					component={OutOfResidence}
+					options={{
+						headerShown:false
+					}}
+				/>
+
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

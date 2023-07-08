@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient"
 import { Image, Text } from "react-native"
 import { COLORS, FONTS, SIZES } from "../constants"
 
-const OptionItem = ({ icon, bgColor, label, onPress}) => {
+const OptionItem = ({ size, icon, bgColor, label, onPress}) => {
 
     return (
         <TouchableOpacity
@@ -11,8 +11,8 @@ const OptionItem = ({ icon, bgColor, label, onPress}) => {
             onPress={onPress}
         >
             <View style={{
-                width: 120,
-                height: 120,
+                width: size,
+                height: size,
             }}>
                 <LinearGradient
                     style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 15 }}
@@ -25,8 +25,8 @@ const OptionItem = ({ icon, bgColor, label, onPress}) => {
                         resizeMode="cover"
                         style={{
                             tintColor: COLORS.brokenwhite,
-                            width: 60,
-                            height: 60
+                            width: size / 2,
+                            height: size / 2,
                         }}
                     />
                 </LinearGradient>

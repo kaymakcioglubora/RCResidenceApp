@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 })
 
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
     // Render
 
@@ -30,25 +30,28 @@ const Home = () => {
                 <Image 
                     source={images.robertCollegeGould}
                     resizeMode="center"
+                    borderRadius={15}
                     style={{
                         width: SIZES.width - 20,
                         height: 220,
                     }}
                 />
 
-                <Text style={{ ...FONTS.h2, marginTop: SIZES.padding }}>Robert College Bingham</Text>
-                <Text style={{ ...FONTS.h3 }}>Veli Portalı</Text>
+                <Text style={{ ...FONTS.body2, marginTop: SIZES.padding }}>Robert College Bingham</Text>
+                <Text style={{ ...FONTS.body3 }}>Veli Portalı</Text>
             </View>
 
             <View style={{ flexDirection: 'row', marginTop: 270, marginHorizontal: 25, paddingHorizontal: SIZES.base }}>
                 <OptionItem
+                        size={120}
                         icon={icons.outOfResidence}
                         bgColor={[COLORS.rcred, COLORS.rcredgradient]}
-                        label="Evci İzin"
-                        onPress={() => { console.log("Evci İzin") }}
+                        label="Yurttan Çıkış"
+                        onPress={() => navigation.navigate("OutOfResidence") }
                 />
 
                 <OptionItem
+                    size={120}
                     icon={icons.inResidence}
                     bgColor={[COLORS.rcred, COLORS.rcredgradient]}
                     label="Yurtta Kalma"
@@ -58,6 +61,7 @@ const Home = () => {
 
             <View style={{ flexDirection: 'row', marginTop: SIZES.padding, marginHorizontal: 25, paddingHorizontal: SIZES.base }}>
                 <OptionItem
+                    size={120}
                     icon={icons.weekend}
                     bgColor={[COLORS.rcred, COLORS.rcredgradient]}
                     label="Hafta Sonu İzin"
@@ -65,6 +69,7 @@ const Home = () => {
                 />
 
                 <OptionItem
+                    size={120}
                     icon={icons.pastRequests}
                     bgColor={[COLORS.rcred, COLORS.rcredgradient]}
                     label="Geçmiş İzinler"
