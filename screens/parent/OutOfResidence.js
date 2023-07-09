@@ -1,6 +1,6 @@
 import { React } from "react";
-import { 
-    View, 
+import {
+    View,
     Text,
     StyleSheet,
     SafeAreaView,
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.brokenwhite
     },
-    
+
     input: {
         width: SIZES.width - 120,
         height: 40,
@@ -32,17 +32,17 @@ const styles = StyleSheet.create({
         fontSize: 14,
         marginRight: 15,
         marginTop: 2,
-      },
+    },
 
-      multilinetext: {
+    multilinetext: {
         alignItems: "center",
         justifyContent: "center",
         textAlign: "left",
         ...FONTS.h3,
         marginLeft: 15,
-      },
+    },
 
-      button: {
+    button: {
         width: 100,
         height: 60,
         alignItems: "center",
@@ -50,38 +50,24 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.rcred,
         borderRadius: 15,
         borderColor: "#ccc",
-      }
+    }
 })
 
-const onDateChange = (date, type) => {
-    if (type === 'END_DATE') {
-      this.setState({
-        selectedEndDate: date,
-      });
-    } else {
-      this.setState({
-        selectedStartDate: date,
-        selectedEndDate: null,
-      });
-    }
-}
 
+const OutOfResidence = ({ navigation }) => {
 
-
-const OutOfResidence = ({navigation}) => {
-    
     /*
         Render
     */
-    
+
     return (
         <SafeAreaView style={styles.container}>
-            
+
             {/* Heading */}
 
             <View style={{ flexDirection: 'row', marginTop: 40, paddingHorizontal: SIZES.base }}>
                 <TouchableOpacity
-                    style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center', marginLeft: 10}}
+                    style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center', marginLeft: 10 }}
                     onPress={() => navigation.goBack()}
                 >
                     <Image
@@ -94,15 +80,15 @@ const OutOfResidence = ({navigation}) => {
                     />
                 </TouchableOpacity>
 
-                <Text style={{...FONTS.h3}}>Yurt Dışında Konaklama Talep Formu</Text>
+                <Text style={{ ...FONTS.h3 }}>Yurt Dışında Konaklama Talep Formu</Text>
 
                 <View
-                    style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
+                    style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
                 />
             </View>
 
-            <View style={{marginTop: 20}}>
-                <Text style={{textAlign: "center", justifyContent: "center", marginLeft: 15, marginRight:15, ...FONTS.body3}}>
+            <View style={{ marginTop: 20 }}>
+                <Text style={{ textAlign: "center", justifyContent: "center", marginLeft: 15, marginRight: 15, ...FONTS.body3 }}>
                     Çocuğum **INSERT**’ın aşağıda belirttiğim akşam(lar)da yurttan çıkmasına izin vermenizi rica ediyorum.
                 </Text>
             </View>
@@ -110,82 +96,85 @@ const OutOfResidence = ({navigation}) => {
             {/* Form */}
             {/* Adres */}
 
-            <View style={{flexDirection: "row", flex:1, marginTop: 20, justifyContent: "space-between"}}>
-                <View style={{flexDirection: "column"}}>
+            <View style={{ flexDirection: "row", flex: 1, marginTop: 20, justifyContent: "space-between" }}>
+                <View style={{ flexDirection: "column" }}>
                     <Text style={styles.multilinetext}>Kalacağı</Text>
                     <Text style={styles.multilinetext}>Adres</Text>
                 </View>
-                
+
                 <TextInput
                     style={styles.input}
+                    selectionColor={COLORS.black}
                 />
-                
+
             </View>
 
             {/* Neden */}
-            <View style={{flexDirection: "row", flex:1, marginTop: 20, justifyContent: "space-between"}}>
-                <View style={{flexDirection: "column"}}>
+            <View style={{ flexDirection: "row", flex: 1, marginTop: 20, justifyContent: "space-between" }}>
+                <View style={{ flexDirection: "column" }}>
                     <Text style={styles.multilinetext}>Nedeni</Text>
                 </View>
-                
+
                 <TextInput
                     style={styles.input}
+                    selectionColor={COLORS.black}
                 />
-                
+
             </View>
 
             {/* Sorumlu Yetişkin İsmi */}
-            <View style={{ flexDirection: "row", flex:1, marginTop: 20, justifyContent: "space-between" }}>
-                <View style={{ flexDirection: "column"}}>
+            <View style={{ flexDirection: "row", flex: 1, marginTop: 20, justifyContent: "space-between" }}>
+                <View style={{ flexDirection: "column" }}>
                     <Text style={styles.multilinetext}>Sorumlu</Text>
                     <Text style={styles.multilinetext}>Yetişkin</Text>
                 </View>
 
                 <TextInput
                     style={styles.input}
+                    selectionColor={COLORS.black}
                 />
 
             </View>
 
             {/* Sorumlu Yetişkin Numarası */}
-            <View style={{ flexDirection: "row", flex:1, marginTop: 20, justifyContent: "space-between" }}>
-                <View style={{ flexDirection: "column"}}>
+            <View style={{ flexDirection: "row", flex: 1, marginTop: 20, justifyContent: "space-between" }}>
+                <View style={{ flexDirection: "column" }}>
                     <Text style={styles.multilinetext}>İrtibat</Text>
                     <Text style={styles.multilinetext}>Numarası</Text>
                 </View>
 
                 <TextInput
                     style={styles.input}
+                    selectionColor={COLORS.black}
                 />
 
             </View>
-            
-             {/* Tarihler */}
+
+            {/* Tarihler */}
             <View>
                 <CalendarPicker
                     startFromMonday={true}
                     allowRangeSelection={true}
-                    todayBackgroundColor={COLORS.gray}
+                    todayBackgroundColor={COLORS.lightgray}
                     selectedDayColor={COLORS.rcred}
                     selectedDayTextColor="#FFFFFF"
-                    onDateChange={this.onDateChange}
                 />
             </View>
 
             {/* Gönder */}
-            <View style={{alignItems: "center", marginBottom: 5}}>
-                <Pressable 
+            <View style={{ alignItems: "center", marginBottom: 5 }}>
+                <Pressable
                     style={styles.button}
                     onPress={() => console.log(SIZES.height)}
                 >
-                    <Text style={{...FONTS.body3}}>Gönder</Text>
+                    <Text style={{ ...FONTS.body3 }}>Gönder</Text>
                 </Pressable>
             </View>
 
         </SafeAreaView>
-        
 
-        
+
+
     )
 }
 

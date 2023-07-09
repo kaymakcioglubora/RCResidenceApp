@@ -73,7 +73,7 @@ const Home = ({ navigation }) => {
                     icon={icons.pastRequests}
                     bgColor={[COLORS.rcred, COLORS.rcredgradient]}
                     label="Geçmiş İzinler"
-                    onPress={() => { console.log("Geçmiş İzinler") }}
+                    onPress={() => { navigation.navigate("Login") }}
                 />
             </View>
 

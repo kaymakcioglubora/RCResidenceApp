@@ -52,10 +52,19 @@ export default function App() {
 	return (
 		<NavigationContainer theme={theme}>
 			<Stack.Navigator
-				initialRouteName={'Home'}
+				initialRouteName={'Login'}
 			>
 				
 				{/*Screens*/}
+
+				<Stack.Screen
+					name="Login"
+					component={Login}
+					options={{
+						title: null,
+						headerShown: false,
+					}}
+				/>
 				
 				<Stack.Screen
 					name="Home"
