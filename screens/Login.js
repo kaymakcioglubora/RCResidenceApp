@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
 import {
     View,
     Text,
@@ -12,9 +12,7 @@ import {
 import { FIREBASE_AUTH } from "../FirebaseConfig";
 
 import { images, COLORS, FONTS, SIZES, icons } from "../constants";
-import { Header } from "@react-navigation/stack";
-import LinearGradient from "react-native-linear-gradient";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import signIn from "../util/FirebaseCommands";
 
 const styles = StyleSheet.create({
     topcontainer: {
@@ -67,14 +65,25 @@ const styles = StyleSheet.create({
 })
 
 
-const Login = () => {
+const Login = ({ navigation }) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const auth = FIREBASE_AUTH;
 
-
+    const signInAuth = async() => {
+        setLoading(true)
+        try {
+            const response = await signIn(username, password);
+            console.log("Response: " + JSON.stringify(response));
+        } catch (error) {
+            console.log(error);
+            alert(error)
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <SafeAreaView style={styles.topcontainer}>
@@ -140,7 +149,7 @@ const Login = () => {
                         
                         <Pressable
                             style={styles.forgotbutton}
-                            onPress={() => console.log("Şifremi Unuttum")}
+                            onPress={null}
                         >
                             <Text style={{...FONTS.body4, alignItems: "center", textAlign: "center", color: COLORS.black}} >
                                 Şifremi Unuttum
@@ -149,7 +158,7 @@ const Login = () => {
 
                         <Pressable
                             style={styles.button}
-                            onPress={() => console.log("Giriş Talebi")}
+                            onPress={signInAuth}
                         >
                             <Image
                                 source={icons.rightArrow}
@@ -161,10 +170,7 @@ const Login = () => {
                                 }}
                             />
                         </Pressable>
-
                     </View>
-
-
                 </View>
             </View>
 

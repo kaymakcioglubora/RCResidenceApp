@@ -36,7 +36,6 @@ let customFonts = {
 export default function App() {
 
 	const [fontLoaded, setFontLoaded] = React.useState(false);
-	const navigationRef = useNavigationContainerRef();
 
 	React.useEffect(() => {
 		Font.loadAsync(customFonts)
@@ -47,8 +46,6 @@ export default function App() {
 
 	if (!fontLoaded) return null;
 
-	
-
 	return (
 		<NavigationContainer theme={theme}>
 			<Stack.Navigator
@@ -56,7 +53,7 @@ export default function App() {
 			>
 				
 				{/*Screens*/}
-
+ 
 				<Stack.Screen
 					name="Login"
 					component={Login}
@@ -69,7 +66,7 @@ export default function App() {
 				<Stack.Screen
 					name="Home"
 					component={Home}
-					options={{
+					options={ ({navigation}) => ({
 						title: null,
 						headerStyle: {
 							backgroundColor: COLORS.brokenwhite
@@ -78,7 +75,7 @@ export default function App() {
 						headerRight: () => (
 							<TouchableOpacity
 								style={{ marginRight: SIZES.padding }}
-								onPress={() => console.log("Settings")}
+								onPress={navigation.navigate("OutOfResidence")}
 							>
 								<Image
                                     source={icons.setting}
@@ -90,7 +87,7 @@ export default function App() {
                                 />
 							</TouchableOpacity>
 						)
-					}}
+					})}
 				/>
 
 				<Stack.Screen

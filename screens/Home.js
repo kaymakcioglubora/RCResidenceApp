@@ -4,8 +4,7 @@ import {
     Text,
     StyleSheet,
     SafeAreaView,
-    Image,
-    TouchableOpacity
+    Image
 } from "react-native";
 
 import { COLORS, FONTS, SIZES, icons, images } from "../constants";
@@ -73,7 +72,7 @@ const Home = ({ navigation }) => {
                     icon={icons.pastRequests}
                     bgColor={[COLORS.rcred, COLORS.rcredgradient]}
                     label="Geçmiş İzinler"
-                    onPress={() => { navigation.navigate("Login") }}
+                    onPress={() => {console.log("Geçmiş") }}
                 />
             </View>
 
