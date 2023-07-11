@@ -1,4 +1,4 @@
-import { React, useContext, useState } from "react";
+import React, {useState} from "react";
 import {
     View,
     Text,
@@ -7,12 +7,14 @@ import {
     SafeAreaView,
     TextInput,
     Pressable,
+    ActivityIndicator,
 } from "react-native";
 
 import { FIREBASE_AUTH } from "../FirebaseConfig";
 
 import { images, COLORS, FONTS, SIZES, icons } from "../constants";
 import signIn from "../util/FirebaseCommands";
+import { AuthContext } from "../util/AuthContext";
 
 const styles = StyleSheet.create({
     topcontainer: {
@@ -72,17 +74,31 @@ const Login = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
     const auth = FIREBASE_AUTH;
 
+    const { signInToApp } = React.useContext(AuthContext);
+
     const signInAuth = async() => {
         setLoading(true)
         try {
             const response = await signIn(username, password);
             console.log("Response: " + JSON.stringify(response));
+            if (response !== null) {
+                console.log("User Token Set")
+                signInToApp(JSON.stringify(response))
+            }
         } catch (error) {
             console.log(error);
             alert(error)
         } finally {
             setLoading(false);
         }
+    }
+
+    if(loading) {
+        return (
+            <View style={{flex:1, alignItems: "center", justifyContent: "center"}}>
+                <ActivityIndicator size="large"/>
+            </View>
+        )
     }
 
     return (

@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from "react";
 import { 
     View, 
     Text,
@@ -10,6 +10,7 @@ import {
 import { COLORS, FONTS, SIZES, icons, images } from "../constants";
 
 import OptionItem from "../components/OptionItem";
+import { AuthContext } from "../util/AuthContext";
 
 const styles = StyleSheet.create({
     container: {
@@ -20,6 +21,8 @@ const styles = StyleSheet.create({
 
 
 const Home = ({ navigation }) => {
+
+    const { signOutFromApp } = React.useContext(AuthContext);
 
     // Render
 
@@ -72,7 +75,7 @@ const Home = ({ navigation }) => {
                     icon={icons.pastRequests}
                     bgColor={[COLORS.rcred, COLORS.rcredgradient]}
                     label="Geçmiş İzinler"
-                    onPress={() => {console.log("Geçmiş") }}
+                    onPress={() => signOutFromApp()}
                 />
             </View>
 
