@@ -8,14 +8,14 @@ import { NavigationContainer, DefaultTheme, useNavigationContainerRef } from '@r
 import * as Font from 'expo-font';
 
 // Screens
-import { Announcements, Home, Login } from "./screens";
-import { InResidence, OutOfResidence, PastRequests, Weekends } from "./screens/parent";
-import { Outing, PastRACheck, StudyClassroom } from "./screens/student";
+
 
 import { AuthContext } from './util/AuthContext';
 
 // Themes
 import { icons, images, COLORS, SIZES, FONTS } from "./constants";
+import ParentStack from './stacks/ParentStack';
+import AuthStack from './stacks/AuthStack';
 
 
 const theme = {
@@ -76,38 +76,7 @@ export default function App() {
 	return (
 		<AuthContext.Provider value={authContext}>
 			<NavigationContainer>
-				{userToken !== null ? (
-					<Stack.Navigator>
-						<Stack.Screen
-							name="Home"
-							component={Home}
-							options={() => ({
-								title: null,
-								headerShown: false,	
-							})}
-						/>
-
-						<Stack.Screen
-							name="OutOfResidence"
-							component={OutOfResidence}
-							options={{
-								headerShown: false
-							}}
-						/>
-					</Stack.Navigator>
-				) : (
-					<Stack.Navigator>
-						<Stack.Screen
-							name="Login"
-							component={Login}
-							options={() => ({
-								title: null,
-								headerShown: false,
-							})}
-						/>
-					</Stack.Navigator>
-				)}
-
+				{userToken !== null ? (<ParentStack/>) : (<AuthStack/>)}
 			</NavigationContainer>
 		</AuthContext.Provider>
 	);

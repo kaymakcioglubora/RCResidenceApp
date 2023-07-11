@@ -13,7 +13,7 @@ import {
 import { FIREBASE_AUTH } from "../FirebaseConfig";
 
 import { images, COLORS, FONTS, SIZES, icons } from "../constants";
-import signIn from "../util/FirebaseCommands";
+import { signIn } from "../util/FirebaseCommands";
 import { AuthContext } from "../util/AuthContext";
 
 const styles = StyleSheet.create({

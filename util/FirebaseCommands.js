@@ -2,7 +2,6 @@ import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { FIREBASE_AUTH, FIRESTORE_DB } from "../FirebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-
 const auth = FIREBASE_AUTH;
 const db = FIRESTORE_DB;
 
@@ -14,7 +13,7 @@ const email_identifier = "@rcresidence.app"
 */}
 
 
-const signIn = async(username, password) => {
+export const signIn = async(username, password) => {
 
     var response = null;
 
@@ -77,5 +76,10 @@ const checkIfUserConfigExists = async(user, username, password) => {
     
 }
 
-
-export default signIn;
+export const signOut = async() => {
+    try {
+        await auth.signOut();
+    } catch(error) {
+        console.log(error);
+    }
+}
