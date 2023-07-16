@@ -83,7 +83,7 @@ const Home = ({ navigation }) => {
                     icon={icons.inResidence}
                     bgColor={[COLORS.rcred, COLORS.rcredgradient]}
                     label="Yurtta Kalma"
-                    onPress={() => navigation.navigate("Weekends")}
+                    onPress={() => navigation.navigate("InResidence")}
                 />
             </View>
 
@@ -93,7 +93,7 @@ const Home = ({ navigation }) => {
                     icon={icons.weekend}
                     bgColor={[COLORS.rcred, COLORS.rcredgradient]}
                     label="Hafta Sonu İzin"
-                    onPress={() => { console.log("Hafta Sonu İzin") }}
+                    onPress={() => navigation.navigate("Weekends")}
                 />
 
                 <OptionItem

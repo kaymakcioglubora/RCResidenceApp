@@ -174,7 +174,7 @@ const Weekends = ({ navigation }) => {
                     </View>
 
                     {/* Gönder */}
-                    <View style={{ flex: 1, alignItems: "center", marginTop: 20 }}>
+                    <View style={{ flex: 1,  alignItems: "center", marginTop: 250}}>
                         <Pressable
                             style={styles.button}
                             onPress={() => console.log(SIZES.height)}

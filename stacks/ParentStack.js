@@ -34,6 +34,14 @@ export default ParentStack = () => {
                     headerShown: false
                 }}
             />
+
+            <Stack.Screen 
+                name="InResidence"
+                component={InResidence}
+                options={{
+                    headerShown: false
+                }}
+            />
         </Stack.Navigator>
     )
 }
