@@ -83,7 +83,7 @@ const Home = ({ navigation }) => {
                     icon={icons.inResidence}
                     bgColor={[COLORS.rcred, COLORS.rcredgradient]}
                     label="Yurtta Kalma"
-                    onPress={() => { console.log("Yurtta Kalma") }}
+                    onPress={() => navigation.navigate("Weekends")}
                 />
             </View>
 

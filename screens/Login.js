@@ -15,6 +15,7 @@ import { FIREBASE_AUTH } from "../FirebaseConfig";
 import { images, COLORS, FONTS, SIZES, icons } from "../constants";
 import { signIn } from "../util/FirebaseCommands";
 import { AuthContext } from "../util/AuthContext";
+import { SecureStore } from "expo-secure-store";
 
 const styles = StyleSheet.create({
     topcontainer: {

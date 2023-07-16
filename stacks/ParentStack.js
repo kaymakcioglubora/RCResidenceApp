@@ -26,6 +26,14 @@ export default ParentStack = () => {
                     headerShown: false
                 }}
             />
+
+            <Stack.Screen
+                name="Weekends"
+                component={Weekends}
+                options={{
+                    headerShown: false
+                }}
+            />
         </Stack.Navigator>
     )
 }

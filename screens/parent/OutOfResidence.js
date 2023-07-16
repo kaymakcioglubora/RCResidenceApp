@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState } from "react";
 import {
     View,
     Text,
@@ -8,11 +8,16 @@ import {
     TouchableOpacity,
     TextInput,
     Pressable,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    Keyboard
 } from "react-native";
 
 import { COLORS, FONTS, SIZES, icons, images } from "../../constants/";
 
 import CalendarPicker from "react-native-calendar-picker";
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -56,124 +61,175 @@ const styles = StyleSheet.create({
 
 const OutOfResidence = ({ navigation }) => {
 
+    const [address, setAddress] = useState("");
+    const [reason, setReason] = useState("");
+    const [adult, setAdult] = useState("");
+    const [adultNumber, setAdultNumber] = useState("");
+    const [selectedStartDate, setSelectedStartDate] = useState(null);
+    const [selectedEndDate, setSelectedEndDate] = useState(null);
+
+    const onDateChange = (date, type) => {
+        if (type === 'END_DATE') {
+            setSelectedEndDate(date);        
+        } else {
+            setSelectedEndDate(null);
+            setSelectedStartDate(date);
+        } 
+    };
+
     /*
         Render
     */
 
     return (
-        <SafeAreaView style={styles.container}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.container}
+        >
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
-            {/* Heading */}
+                <SafeAreaView style={styles.container}>
 
-            <View style={{ flexDirection: 'row', marginTop: 40, paddingHorizontal: SIZES.base }}>
-                <TouchableOpacity
-                    style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center', marginLeft: 10 }}
-                    onPress={() => navigation.goBack()}
-                >
-                    <Image
-                        source={icons.leftArrow}
-                        resizeMode="cover"
-                        style={{
-                            height: 20,
-                            width: 20,
-                        }}
-                    />
-                </TouchableOpacity>
+                    {/* Heading */}
+                    <View style={{ flexDirection: 'row', marginTop: 40, paddingHorizontal: SIZES.base }}>
+                        <TouchableOpacity
+                            style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center', marginLeft: 10 }}
+                            onPress={() => navigation.goBack()}
+                        >
+                            <Image
+                                source={icons.leftArrow}
+                                resizeMode="cover"
+                                style={{
+                                    height: 20,
+                                    width: 20,
+                                }}
+                            />
+                        </TouchableOpacity>
 
-                <Text style={{ ...FONTS.h3 }}>Yurt Dışında Konaklama Talep Formu</Text>
+                        <Text style={{ ...FONTS.h3 }}>Yurt Dışında Konaklama Talep Formu</Text>
 
-                <View
-                    style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-                />
-            </View>
+                        <View
+                            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+                        />
+                    </View>
 
-            <View style={{ marginTop: 20 }}>
-                <Text style={{ textAlign: "center", justifyContent: "center", marginLeft: 15, marginRight: 15, ...FONTS.body3 }}>
-                    Çocuğum **INSERT**’ın aşağıda belirttiğim akşam(lar)da yurttan çıkmasına izin vermenizi rica ediyorum.
-                </Text>
-            </View>
+                    <View style={{ marginTop: 20 }}>
+                        <Text style={{ textAlign: "center", justifyContent: "center", marginLeft: 15, marginRight: 15, ...FONTS.body3 }}>
+                            Çocuğum **INSERT**’ın aşağıda belirttiğim akşam(lar)da yurttan çıkmasına izin vermenizi rica ediyorum.
+                        </Text>
+                    </View>
 
-            {/* Form */}
-            {/* Adres */}
+                    {/* Form */}
+                    {/* Adres */}
+                    <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
+                        <View style={{ flexDirection: "column" }}>
+                            <Text style={styles.multilinetext}>Kalacağı</Text>
+                            <Text style={styles.multilinetext}>Adres</Text>
+                        </View>
 
-            <View style={{ flexDirection: "row", flex: 1, marginTop: 20, justifyContent: "space-between" }}>
-                <View style={{ flexDirection: "column" }}>
-                    <Text style={styles.multilinetext}>Kalacağı</Text>
-                    <Text style={styles.multilinetext}>Adres</Text>
-                </View>
+                        <TextInput
+                            style={styles.input}
+                            selectionColor={COLORS.black}
+                            onChangeText={(text) => setAddress(text)}
+                        />
 
-                <TextInput
-                    style={styles.input}
-                    selectionColor={COLORS.black}
-                />
+                    </View>
 
-            </View>
+                    {/* Neden */}
+                    <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
+                        <View style={{ flexDirection: "column" }}>
+                            <Text style={styles.multilinetext}>Nedeni</Text>
+                        </View>
 
-            {/* Neden */}
-            <View style={{ flexDirection: "row", flex: 1, marginTop: 20, justifyContent: "space-between" }}>
-                <View style={{ flexDirection: "column" }}>
-                    <Text style={styles.multilinetext}>Nedeni</Text>
-                </View>
+                        <TextInput
+                            style={styles.input}
+                            selectionColor={COLORS.black}
+                            onChangeText={(text) => setReason(text)}
+                        />
 
-                <TextInput
-                    style={styles.input}
-                    selectionColor={COLORS.black}
-                />
+                    </View>
 
-            </View>
+                    {/* Sorumlu Yetişkin İsmi */}
+                    <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
+                        <View style={{ flexDirection: "column" }}>
+                            <Text style={styles.multilinetext}>Sorumlu</Text>
+                            <Text style={styles.multilinetext}>Yetişkin</Text>
+                        </View>
 
-            {/* Sorumlu Yetişkin İsmi */}
-            <View style={{ flexDirection: "row", flex: 1, marginTop: 20, justifyContent: "space-between" }}>
-                <View style={{ flexDirection: "column" }}>
-                    <Text style={styles.multilinetext}>Sorumlu</Text>
-                    <Text style={styles.multilinetext}>Yetişkin</Text>
-                </View>
+                        <TextInput
+                            style={styles.input}
+                            selectionColor={COLORS.black}
+                            onChangeText={(text) => setAdult(text)}
+                        />
 
-                <TextInput
-                    style={styles.input}
-                    selectionColor={COLORS.black}
-                />
+                    </View>
 
-            </View>
+                    {/* Sorumlu Yetişkin Numarası */}
+                    <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
+                        <View style={{ flexDirection: "column" }}>
+                            <Text style={styles.multilinetext}>İrtibat</Text>
+                            <Text style={styles.multilinetext}>Numarası</Text>
+                        </View>
 
-            {/* Sorumlu Yetişkin Numarası */}
-            <View style={{ flexDirection: "row", flex: 1, marginTop: 20, justifyContent: "space-between" }}>
-                <View style={{ flexDirection: "column" }}>
-                    <Text style={styles.multilinetext}>İrtibat</Text>
-                    <Text style={styles.multilinetext}>Numarası</Text>
-                </View>
+                        <TextInput
+                            style={styles.input}
+                            selectionColor={COLORS.black}
+                            onChangeText={(text) => setAdultNumber(text)}
+                        />
 
-                <TextInput
-                    style={styles.input}
-                    selectionColor={COLORS.black}
-                />
+                    </View>
 
-            </View>
+                    {/* Tarihler */}
+                    <View style={{ flex: 1 }}>
+                        <CalendarPicker
+                            startFromMonday={true}
+                            allowRangeSelection={true}
+                            todayBackgroundColor={COLORS.lightgray}
+                            selectedDayColor={COLORS.rcred}
+                            selectedDayTextColor="#FFFFFF"
+                            weekdays={[
+                                'Pzt',
+                                'Salı',
+                                'Çrş',
+                                'Prş',
+                                'Cuma',
+                                'Cmt',
+                                'Pzr'
+                            ]}
+                            months={[
+                                'Ocak',
+                                'Şubat',
+                                'Mart',
+                                'Nisan',
+                                'Mayıs',
+                                'Haziran',
+                                'Temmuz',
+                                'Ağustos',
+                                'Eylül',
+                                'Ekim',
+                                'Kasım',
+                                'Aralık',
+                            ]}
+                            previousTitle="<"
+                            nextTitle=">"
+                            onDateChange={onDateChange}
 
-            {/* Tarihler */}
-            <View>
-                <CalendarPicker
-                    startFromMonday={true}
-                    allowRangeSelection={true}
-                    todayBackgroundColor={COLORS.lightgray}
-                    selectedDayColor={COLORS.rcred}
-                    selectedDayTextColor="#FFFFFF"
-                />
-            </View>
+                        />
+                    </View>
 
-            {/* Gönder */}
-            <View style={{ alignItems: "center", marginBottom: 5 }}>
-                <Pressable
-                    style={styles.button}
-                    onPress={() => console.log(SIZES.height)}
-                >
-                    <Text style={{ ...FONTS.body3 }}>Gönder</Text>
-                </Pressable>
-            </View>
+                    {/* Gönder */}
+                    <View style={{ flex: 1, alignItems: "center", marginTop: 250 }}>
+                        <Pressable
+                            style={styles.button}
+                            onPress={() => console.log(SIZES.height)}
+                        >
+                            <Text style={{ ...FONTS.body3, color: COLORS.brokenwhite }}>Gönder</Text>
+                        </Pressable>
+                    </View>
+                </SafeAreaView>
 
-        </SafeAreaView>
-
-
+            </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
 
     )
 }

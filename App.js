@@ -68,7 +68,7 @@ export default function App() {
 	if(loading) {
 		return(
 			<View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-				<ActivityIndicator size="large"/>
+				<ActivityIndicator size="large" color={COLORS.rcredgradient}/>
 			</View>
 		)
 	}
