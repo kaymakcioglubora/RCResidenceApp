@@ -1,4 +1,4 @@
-import { Dimensions } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 /*
@@ -42,6 +42,9 @@ export const SIZES = {
     height
 };
 
+/*
+ * Fonts
+ */
 export const FONTS = {
 
     largeTitle: { fontFamily: "Roboto-Black", fontSize: SIZES.largeTitle, lineHeight: 55 },
@@ -55,6 +58,48 @@ export const FONTS = {
     body4: { fontFamily: "Roboto-Regular", fontSize: SIZES.body4, lineHeight: 22 },
 };
 
-const appTheme = { COLORS, SIZES, FONTS };
+/*
+ * Styles 
+ */
+export const STYLES = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: COLORS.brokenwhite
+    },
+
+    input: {
+        width: SIZES.width - 120,
+        height: 40,
+        backgroundColor: COLORS.lightgray,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderColor: "#ccc",
+        borderWidth: 1,
+        borderRadius: 15,
+        fontSize: 14,
+        marginRight: 15,
+        marginTop: 2,
+    },
+
+    multilinetext: {
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "left",
+        ...FONTS.h3,
+        marginLeft: 15,
+    },
+
+    button: {
+        width: 100,
+        height: 60,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: COLORS.rcred,
+        borderRadius: 15,
+        borderColor: "#ccc",
+    }
+})
+
+const appTheme = { COLORS, SIZES, FONTS, STYLES};
 
 export default appTheme;

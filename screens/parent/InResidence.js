@@ -14,53 +14,16 @@ import {
     Pressable,
 } from "react-native";
 
-import { COLORS, FONTS, SIZES, icons, images } from "../../constants/";
+import { COLORS, FONTS, SIZES, STYLES, icons, images } from "../../constants/";
 
 import CalendarPicker from "react-native-calendar-picker";
 
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: COLORS.brokenwhite
-    },
-
-    input: {
-        width: SIZES.width - 120,
-        height: 40,
-        backgroundColor: COLORS.lightgray,
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-        borderColor: "#ccc",
-        borderWidth: 1,
-        borderRadius: 15,
-        fontSize: 14,
-        marginRight: 15,
-        marginTop: 2,
-    },
-
-    multilinetext: {
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "left",
-        ...FONTS.h3,
-        marginLeft: 15,
-    },
-
-    button: {
-        width: 100,
-        height: 60,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: COLORS.rcred,
-        borderRadius: 15,
-        borderColor: "#ccc",
-    }
-})
-
-
-
+/**
+ * 
+ * Render 
+ * 
+ */
 const InResidence = ({ navigation }) => {
 
     const [reason, setReason] = useState("");
@@ -84,11 +47,11 @@ const InResidence = ({ navigation }) => {
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={styles.container}
+            style={STYLES.container}
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
-                <SafeAreaView style={styles.container}>
+                <SafeAreaView style={STYLES.container}>
 
                     {/* Heading */}
                     <View style={{ flexDirection: 'row', marginTop: 40, paddingHorizontal: SIZES.base }}>
@@ -124,12 +87,12 @@ const InResidence = ({ navigation }) => {
                     {/* Nedeni */}
                     <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
                         <View style={{ flexDirection: "column" }}>
-                            <Text style={styles.multilinetext}>Kalma</Text>
-                            <Text style={styles.multilinetext}>Nedeni</Text>
+                            <Text style={STYLES.multilinetext}>Kalma</Text>
+                            <Text style={STYLES.multilinetext}>Nedeni</Text>
                         </View>
 
                         <TextInput
-                            style={styles.input}
+                            style={STYLES.input}
                             selectionColor={COLORS.black}
                             onChangeText={(text) => setReason(text)}
                         />
@@ -178,8 +141,8 @@ const InResidence = ({ navigation }) => {
                     {/* Gönder */}
                     <View style={{ flex: 1, bottom: 20, alignItems: "center", marginTop: 250 }}>
                         <Pressable
-                            style={styles.button}
-                            onPress={() => console.log(SIZES.height)}
+                            style={STYLES.button}
+                            onPress={() => console.log("Start Date" + String(selectedStartDate) + "\nEnd Date: " + String(selectedEndDate))}
                         >
                             <Text style={{ ...FONTS.body3, color: COLORS.brokenwhite }}>Gönder</Text>
                         </Pressable>
