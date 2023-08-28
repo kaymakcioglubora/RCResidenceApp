@@ -83,3 +83,13 @@ export const signOut = async() => {
         console.log(error);
     }
 }
+
+/**
+ * Send Form to the database
+ * @param {*} type      Type of the from
+ * @param {*} userid    UserID
+ * @param {*} data      Data as an array
+ */
+export const sendForm = async(type, userid, data) => {
+    
+}

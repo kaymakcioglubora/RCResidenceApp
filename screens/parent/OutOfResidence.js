@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import {
     View,
     Text,
-    StyleSheet,
     SafeAreaView,
     Image,
     TouchableOpacity,
@@ -13,52 +12,16 @@ import {
     Keyboard
 } from "react-native";
 
-import { COLORS, FONTS, SIZES, icons, images } from "../../constants/";
+import { COLORS, FONTS, SIZES, STYLES, icons, images } from "../../constants/";
 
 import CalendarPicker from "react-native-calendar-picker";
 
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: COLORS.brokenwhite
-    },
-
-    input: {
-        width: SIZES.width - 120,
-        height: 40,
-        backgroundColor: COLORS.lightgray,
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-        borderColor: "#ccc",
-        borderWidth: 1,
-        borderRadius: 15,
-        fontSize: 14,
-        marginRight: 15,
-        marginTop: 2,
-    },
-
-    multilinetext: {
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "left",
-        ...FONTS.h3,
-        marginLeft: 15,
-    },
-
-    button: {
-        width: 100,
-        height: 60,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: COLORS.rcred,
-        borderRadius: 15,
-        borderColor: "#ccc",
-    }
-})
-
-
+/**
+ * 
+ * Render 
+ * 
+ */
 const OutOfResidence = ({ navigation }) => {
 
     const [address, setAddress] = useState("");
@@ -84,11 +47,11 @@ const OutOfResidence = ({ navigation }) => {
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={styles.container}
+            style={STYLES.container}
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
-                <SafeAreaView style={styles.container}>
+                <SafeAreaView style={STYLES.container}>
 
                     {/* Heading */}
                     <View style={{ flexDirection: 'row', marginTop: 40, paddingHorizontal: SIZES.base }}>
@@ -123,12 +86,12 @@ const OutOfResidence = ({ navigation }) => {
                     {/* Adres */}
                     <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
                         <View style={{ flexDirection: "column" }}>
-                            <Text style={styles.multilinetext}>Kalacağı</Text>
-                            <Text style={styles.multilinetext}>Adres</Text>
+                            <Text style={STYLES.multilinetext}>Kalacağı</Text>
+                            <Text style={STYLES.multilinetext}>Adres</Text>
                         </View>
 
                         <TextInput
-                            style={styles.input}
+                            style={STYLES.input}
                             selectionColor={COLORS.black}
                             onChangeText={(text) => setAddress(text)}
                         />
@@ -138,11 +101,11 @@ const OutOfResidence = ({ navigation }) => {
                     {/* Neden */}
                     <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
                         <View style={{ flexDirection: "column" }}>
-                            <Text style={styles.multilinetext}>Nedeni</Text>
+                            <Text style={STYLES.multilinetext}>Nedeni</Text>
                         </View>
 
                         <TextInput
-                            style={styles.input}
+                            style={STYLES.input}
                             selectionColor={COLORS.black}
                             onChangeText={(text) => setReason(text)}
                         />
@@ -152,12 +115,12 @@ const OutOfResidence = ({ navigation }) => {
                     {/* Sorumlu Yetişkin İsmi */}
                     <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
                         <View style={{ flexDirection: "column" }}>
-                            <Text style={styles.multilinetext}>Sorumlu</Text>
-                            <Text style={styles.multilinetext}>Yetişkin</Text>
+                            <Text style={STYLES.multilinetext}>Sorumlu</Text>
+                            <Text style={STYLES.multilinetext}>Yetişkin</Text>
                         </View>
 
                         <TextInput
-                            style={styles.input}
+                            style={STYLES.input}
                             selectionColor={COLORS.black}
                             onChangeText={(text) => setAdult(text)}
                         />
@@ -167,12 +130,12 @@ const OutOfResidence = ({ navigation }) => {
                     {/* Sorumlu Yetişkin Numarası */}
                     <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-between" }}>
                         <View style={{ flexDirection: "column" }}>
-                            <Text style={styles.multilinetext}>İrtibat</Text>
-                            <Text style={styles.multilinetext}>Numarası</Text>
+                            <Text style={STYLES.multilinetext}>İrtibat</Text>
+                            <Text style={STYLES.multilinetext}>Numarası</Text>
                         </View>
 
                         <TextInput
-                            style={styles.input}
+                            style={STYLES.input}
                             selectionColor={COLORS.black}
                             onChangeText={(text) => setAdultNumber(text)}
                         />
@@ -220,8 +183,8 @@ const OutOfResidence = ({ navigation }) => {
                     {/* Gönder */}
                     <View style={{ flex: 1, alignItems: "center", marginTop: 250 }}>
                         <Pressable
-                            style={styles.button}
-                            onPress={() => console.log(SIZES.height)}
+                            style={STYLES.button}
+                            onPress={() => console.log("From Sending Implementation")}
                         >
                             <Text style={{ ...FONTS.body3, color: COLORS.brokenwhite }}>Gönder</Text>
                         </Pressable>
