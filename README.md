@@ -31,7 +31,9 @@ The RC Residence App is a conceptual Institute Management Software built on Reac
 
 **Database:** Firebase -  Realtime Databse
 
-**Authentication:** Auth0
+**Authentication:** Auth0 
+
+**Backend:** TBD (possibly .netjs on ecs)
 
 
 ## Color Reference
